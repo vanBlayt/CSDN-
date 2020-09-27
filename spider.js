@@ -11,8 +11,10 @@ class Spider {
 	async init() {
 		return new Promise((resolve, reject) => {
 			var _this = this
-            var data = fs.readFileSync('config.json', 'utf-8')
+			//读取文件博客地址
+			var data = fs.readFileSync('config.json', 'utf-8')
 			this.baseURL = JSON.parse(JSON.parse(JSON.stringify(data))).blogURL
+			//获取博客列表的URL地址
 			superagent
 				.get(this.baseURL)
 				.then((res) => {
@@ -31,7 +33,7 @@ class Spider {
 				})
 		})
 	}
-
+    // 访问
 	visit() {
 		this.blogs.map((item, index) => {
 			superagent
